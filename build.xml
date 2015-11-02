@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Fetch_multiple_Record" default="test">
+	
+	 
+	 <property name="srcdir" location="src" />
+	
+	<target name="clean">
+		<delete failonerror="false" dir="lib"/> 
+	</target>
+	
+	<target name="create">
+        <mkdir dir="lib"/>	
+	</target>	
+	
+	<path id="classpath">
+	<pathelement location="lib/*"/>
+	<pathelement location="bins"/>	
+	</path>
+ 
+	<target name="copy" depends="create">
+		<copy todir="lib" overwrite="true">
+			<fileset dir="D:\selenium-java-2.45.0\selenium-2.45.0\libs\lib" includes="**/*.jar"></fileset>
+		</copy>	
+	</target>
+	
+	<target name="compile" depends="copy">
+		<javac includeantruntime="true" srcdir="src" destdir="bins" includes="**/*.java ver">
+			 <classpath>
+	               <fileset dir="lib">
+	                  <include name="**/*.jar" />
+	               </fileset>
+	         </classpath>
+		</javac>
+	</target>
+	
+	
+	
+	<target name="testing" depends="compile">
+	</target>
+	<target name="test" depends="testing"> 
+		 <xmlfileset dir="" includes="testng.xml"/> 
+	</target>
+</project>

@@ -10,6 +10,7 @@
       <class name="Multiple_Records.SearchLink2"/>
       <class name="Multiple_Records.SearchLink3"/>
       <class name="Multiple_Records.Records2"/>
+      <class name="org.attune.selenium.record_fetch.AppTest"/>
       <class name="Multiple_Records.SearchLink"/>
       <class name="Multiple_Records.GMAP"/>
       <class name="Multiple_Records.Records"/>

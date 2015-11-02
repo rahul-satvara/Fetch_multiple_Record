@@ -1,43 +1,46 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project name="Fetch_multiple_Record" default="test">
+<project name="Sample Ant build" basedir="." default="testng-execution">
+	<!-- ========== Initialize Properties =================================== -->
+	<!-- set global properties for build -->
+	<property name="basedir" value="." />
+	<property name="lib" value="${basedir}/libs" />
+	<property name="src" value="${basedir}/src" />
+	<property name="bin" value="${basedir}/bin" />
+	<property name="report-dir" value="${basedir}/Test-Report" />
+	<property name="testng-report-dir" value="${report-dir}/TestNGreport" />
 	
-	 
-	 <property name="srcdir" location="src" />
-	
-	<target name="clean">
-		<delete failonerror="false" dir="lib"/> 
-	</target>
-	
-	<target name="create">
-        <mkdir dir="lib"/>	
-	</target>	
-	
+	<!-- ====== Set the classpath ====  -->
 	<path id="classpath">
-	<pathelement location="lib/*"/>
-	<pathelement location="bins"/>	
+		<pathelement location="${bin}" />
+		<fileset dir="${lib}">
+			<include name="*.jar" />
+		</fileset>
 	</path>
- 
-	<target name="copy" depends="create">
-		<copy todir="lib" overwrite="true">
-			<fileset dir="D:\selenium-java-2.45.0\selenium-2.45.0\libs\lib" includes="**/*.jar"></fileset>
-		</copy>	
+	
+	<!-- Delete directories  -->
+	<target name="delete-dir">
+		<delete dir="${bin}" />
+		<delete dir="${report-dir}" />
 	</target>
 	
-	<target name="compile" depends="copy">
-		<javac includeantruntime="true" srcdir="src" destdir="bins" includes="**/*.java ver">
-			 <classpath>
-	               <fileset dir="lib">
-	                  <include name="**/*.jar" />
-	               </fileset>
-	         </classpath>
-		</javac>
+	<!-- Creating directories -->
+	<target name="create" depends="delete-dir">
+		<mkdir dir="${bin}" />
+		<mkdir dir="${report-dir}" />
 	</target>
 	
-	
-	
-	<target name="testing" depends="compile">
+	<!-- Compile the java code from ${src} into ${bin} -->
+	<target name="compile" depends="create">
+		<javac srcdir="${src}" classpathref="classpath" includeAntRuntime="No" destdir="${bin}" />
+		<echo> /* Compiled Directory Classes */ </echo>
 	</target>
-	<target name="test" depends="testing"> 
-		 <xmlfileset dir="" includes="testng.xml"/> 
+	
+	<!-- Runs the file and generates Reportng report for TestNG-->
+	<taskdef name="testng" classname="org.testng.TestNGAntTask" classpathref="classpath" />
+	
+	<target name="testng-execution" depends="compile">
+		<mkdir dir="${testng-report-dir}" />
+		<testng outputdir="${testng-report-dir}" classpathref="classpath" useDefaultListeners="true">
+			<xmlfileset dir="${basedir}" includes="testng.xml" />
+		</testng>
 	</target>
 </project>

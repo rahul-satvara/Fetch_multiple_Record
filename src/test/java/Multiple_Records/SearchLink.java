@@ -36,7 +36,7 @@ public class SearchLink {
 			 
 			     
 				String main = "";
-			    String fileName = "D:\\link1.csv";
+			    String fileName = "E:\\link1.csv";
 				FileWriter writer = new FileWriter(fileName);
 				String FILE_HEADER = "Street;Address;Suburb;State;Post Code;Local Authority;Land Use;Current Zoning;Up Zoning;Site Area;Description;Lot;Plan;Site type;Adopted;Height;Density;Owner;CMA;AVM;GMAP;Link1;";
 				writer.append(FILE_HEADER);

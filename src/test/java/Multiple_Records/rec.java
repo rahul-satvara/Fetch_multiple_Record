@@ -21,7 +21,7 @@ import org.testng.annotations.Test;
 
 public class rec {
 	 
-	String csv_path = "D:\\Records\\records-11-50.csv";
+	String csv_path = "E:\\Records\\records-11-50.csv";
 	WebDriver driver;
 	
 	

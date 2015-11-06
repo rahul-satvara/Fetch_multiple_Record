@@ -17,7 +17,7 @@ import org.testng.annotations.Test;
 
 public class GMAP {
 	
-	String csv_path = "D:\\Records\\records_256-359.csv";
+	String csv_path = "E:\\Records\\records_256-359.csv";
 	WebDriver driver;
 	
 	@BeforeTest

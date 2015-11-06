@@ -17,7 +17,7 @@ public class SearchLink3 {
 	@Test
 	 public void getSearchLink() throws IOException
 	 {
-		 String csv_path = "D:\\Records\\records.csv";
+		 String csv_path = "E:\\Records\\records.csv";
 		 BufferedReader br = new BufferedReader(new FileReader(csv_path));
 		 String line;
 		 String Url;
